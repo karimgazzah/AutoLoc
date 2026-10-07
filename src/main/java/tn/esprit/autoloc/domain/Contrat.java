@@ -1,10 +1,13 @@
 package tn.esprit.autoloc.domain;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,4 +33,11 @@ public class Contrat {
     @Column(precision = 10, scale = 2)
     private BigDecimal montantTotal;
     private boolean valide;
+
+    @OneToOne
+    @JoinColumn(name = "id_reservation", nullable = false, unique = true)
+    private Reservation reservation;
+
+    @OneToOne(mappedBy = "contrat", cascade = CascadeType.ALL)
+    private Paiement paiement;
 }

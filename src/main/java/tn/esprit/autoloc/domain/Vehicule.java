@@ -7,13 +7,22 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.JoinTable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "vehicule")
@@ -45,4 +54,20 @@ public class Vehicule {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private StatutVehicule statut;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_agence", nullable = false)
+    private Agence agence;
+
+    @OneToMany(mappedBy = "vehicule")
+    private List<Maintenance> maintenances = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(name = "vehicule_equipement",
+            joinColumns = @JoinColumn(name = "vehicule_id"),
+            inverseJoinColumns = @JoinColumn(name = "equipement_id"))
+    private Set<Equipement> equipements = new HashSet<>();
+
+    @OneToMany(mappedBy = "vehicule")
+    private List<Reservation> reservations = new ArrayList<>();
 }

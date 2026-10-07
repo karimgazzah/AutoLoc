@@ -7,6 +7,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,4 +35,8 @@ public class Paiement {
 
     @Enumerated(EnumType.STRING)
     private ModePaiement modePaiement;
+
+    @OneToOne
+    @JoinColumn(name = "id_contrat", nullable = false, unique = true)
+    private Contrat contrat;
 }
