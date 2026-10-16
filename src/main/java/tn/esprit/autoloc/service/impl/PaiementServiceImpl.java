@@ -1,4 +1,4 @@
-package tn.esprit.autoloc.service;
+package tn.esprit.autoloc.service.impl;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -7,11 +7,12 @@ import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.autoloc.domain.Paiement;
 import tn.esprit.autoloc.exception.ResourceNotFoundException;
 import tn.esprit.autoloc.repository.IPaiementRepository;
+import tn.esprit.autoloc.service.IPaiementService;
 
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class PaiementServiceImpl implements IPaiementService {
+public class PaiementServiceImpl implements tn.esprit.autoloc.service.IPaiementService {
     private final IPaiementRepository paiementRepository;
 
     @Override

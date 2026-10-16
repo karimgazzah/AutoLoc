@@ -1,4 +1,4 @@
-package tn.esprit.autoloc.service;
+package tn.esprit.autoloc.service.impl;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -7,11 +7,12 @@ import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.autoloc.domain.Employe;
 import tn.esprit.autoloc.exception.ResourceNotFoundException;
 import tn.esprit.autoloc.repository.IEmployeRepository;
+import tn.esprit.autoloc.service.IEmployeService;
 
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class EmployeServiceImpl implements IEmployeService {
+public class EmployeServiceImpl implements tn.esprit.autoloc.service.IEmployeService {
     private final IEmployeRepository employeRepository;
 
     @Override

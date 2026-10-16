@@ -1,4 +1,4 @@
-package tn.esprit.autoloc.service;
+package tn.esprit.autoloc.service.impl;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -7,11 +7,12 @@ import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.autoloc.domain.Agence;
 import tn.esprit.autoloc.exception.ResourceNotFoundException;
 import tn.esprit.autoloc.repository.IAgenceRepository;
+import tn.esprit.autoloc.service.IAgenceService;
 
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class AgenceServiceImpl implements IAgenceService {
+public class AgenceServiceImpl implements tn.esprit.autoloc.service.IAgenceService {
     private final IAgenceRepository agenceRepository;
 
     @Override

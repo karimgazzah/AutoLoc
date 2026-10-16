@@ -1,4 +1,4 @@
-package tn.esprit.autoloc.service;
+package tn.esprit.autoloc.service.impl;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -7,11 +7,12 @@ import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.autoloc.domain.Reservation;
 import tn.esprit.autoloc.exception.ResourceNotFoundException;
 import tn.esprit.autoloc.repository.IReservationRepository;
+import tn.esprit.autoloc.service.IReservationService;
 
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class ReservationServiceImpl implements IReservationService {
+public class ReservationServiceImpl implements tn.esprit.autoloc.service.IReservationService {
     private final IReservationRepository reservationRepository;
 
     @Override
