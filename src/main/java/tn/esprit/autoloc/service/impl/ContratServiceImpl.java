@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.autoloc.domain.Contrat;
+import tn.esprit.autoloc.domain.Paiement;
 import tn.esprit.autoloc.exception.ResourceNotFoundException;
 import tn.esprit.autoloc.repository.IContratRepository;
 import tn.esprit.autoloc.service.IContratService;
@@ -19,6 +20,19 @@ public class ContratServiceImpl implements tn.esprit.autoloc.service.IContratSer
     public Contrat create(Contrat contrat) {
         ServiceValidation.requireNewEntity(contrat, contrat == null ? null : contrat.getIdContrat(), "contrat");
         validateMontant(contrat);
+        return contratRepository.save(contrat);
+    }
+
+    @Override
+    @Transactional
+    public Contrat addWithPayments(Contrat contrat) {
+        ServiceValidation.requireNewEntity(contrat, contrat == null ? null : contrat.getIdContrat(), "contrat");
+        validateMontant(contrat);
+        if (contrat.getPaiements() != null) {
+            for (Paiement paiement : contrat.getPaiements()) {
+                paiement.setContrat(contrat);
+            }
+        }
         return contratRepository.save(contrat);
     }
 

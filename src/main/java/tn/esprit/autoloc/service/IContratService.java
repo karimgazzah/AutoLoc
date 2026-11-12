@@ -6,6 +6,8 @@ import tn.esprit.autoloc.domain.Contrat;
 public interface IContratService {
     Contrat create(Contrat contrat);
 
+    Contrat addWithPayments(Contrat contrat);
+
     Contrat findById(Long id);
 
     List<Contrat> findAll();
