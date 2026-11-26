@@ -9,11 +9,13 @@ import esprit.tn.autoloc.repository.IAgenceRepository;
 import esprit.tn.autoloc.repository.IEquipementRepository;
 import esprit.tn.autoloc.repository.IVehiculeRepository;
 import esprit.tn.autoloc.service.IVehiculeService;
+import esprit.tn.autoloc.web.controller.DTO.VehiculeDTO;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -38,8 +40,22 @@ public class VehiculeServiceImpl implements IVehiculeService {
     }
 
     @Override
-    public List<Vehicule> findAll() {
+    public List<VehiculeDTO> findAll() {
+        List<VehiculeDTO> vehiculeDTOS = new ArrayList<>();
+        for (Vehicule vehicule : vehiculeRepository.findAll()){
+            vehiculeDTOS.add(toDTO(vehicule));
+        }
         return vehiculeRepository.findAll();
+    }
+    public VehiculeDTO toDTO(Vehicule vehicule){
+        VehiculeDTO vehiculeDTO = new VehiculeDTO();
+        vehiculeDTO.setImmatriculation(vehicule.getImmatriculation());
+        vehiculeDTO.setCategorie(vehicule.getCategorie());
+        vehiculeDTO.setMarque(vehicule.getMarque());
+        vehiculeDTO.setTarifJournalier(vehicule.getTarifJournalier());
+        vehiculeDTO.setNomAgence(vehicule.getAgence());
+
+        return vehiculeDTO;
     }
 
     @Override
