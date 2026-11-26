@@ -58,4 +58,14 @@ public class AgenceServiceImpl implements IAgenceService {
             throw new IllegalArgumentException("Le nom de l'agence est obligatoire");
         }
     }
+
+    @Override
+    public Agence getByNom (String nom){
+        return agenceRepository.findByNom(nom);
+    }
+
+    @Override
+    public List<Agence> getByVilleAndAdresse (String ville, String adresse){
+        return agenceRepository.findByVilleContainingIgnoreCaseAndAdresseContainingIgnoreCase(ville, adresse);
+    }
 }

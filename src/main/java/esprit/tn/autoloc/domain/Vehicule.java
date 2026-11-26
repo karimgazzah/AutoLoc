@@ -38,6 +38,7 @@ public class Vehicule {
     private Agence agence;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @Builder.Default
     private Set<Equipement> equipements = new HashSet<>();
 
 }
